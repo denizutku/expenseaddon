@@ -1,19 +1,14 @@
-#spring.datasource.hikari.connectionTimeout: 20000
-#spring.datasource.hikari.maximumPoolSize: 5
-
-    ## PostgreSQL
 spring.datasource.url: jdbc:h2:mem:testdb
-spring.datasource.username: sa
-spring.datasource.password: 1
 spring.datasource.driverClassName: org.h2.Driver
+spring.datasource.username: sa
+spring.datasource.password: password
 spring.jpa.database-platform: org.hibernate.dialect.H2Dialect
-spring.h2.console.enabled: true
-
-#spring.jpa.hibernate.ddl-auto: none
+spring.datasource.platform: h2
+spring.jpa.hibernate.ddl-auto: create
 #spring.datasource.url: jdbc:hsqldb:file:addon-db # Use a file-based backing store for HSQL
 
 addon:
   key: atlassianaddon
-  base-url: https://5cb16a3f1ab9.ngrok.io
+  base-url: https://expenseaddon.herokuapp.com
 
 logging.level.com.atlassian.connect.spring: DEBUG
