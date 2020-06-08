@@ -1,0 +1,25 @@
+{
+  "key": "${addon.key}",
+  "baseUrl": "${addon.base-url}",
+  "name": "Atlassianaddon",
+  "authentication": {
+    "type": "jwt"
+  },
+  "lifecycle": {
+    "installed": "/installed",
+    "uninstalled": "/uninstalled"
+  },
+  "scopes": ["READ","ACT_AS_USER"],
+  "modules": {
+    "generalPages": [
+      {
+        "url": "/helloworld",
+        "key": "hello-world",
+        "location": "system.top.navigation.bar",
+        "name": {
+          "value": "Test Addon"
+        }
+      }
+    ]
+  }
+}
