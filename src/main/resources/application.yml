@@ -11,6 +11,6 @@ spring.jpa.hibernate.ddl-auto: none
 
 addon:
   key: atlassianaddon
-  base-url: https://6883b5c396b0.ngrok.io
+  base-url: https://expenseaddon.herokuapp.com/
 
 logging.level.com.atlassian.connect.spring: DEBUG
