@@ -15,7 +15,7 @@ import java.nio.file.StandardCopyOption;
 @Service
 public class FileService {
 
-    public String uploadDir = "/tmp";
+    public String uploadDir = "tmp";
 
     public void uploadFile(MultipartFile file) {
 
