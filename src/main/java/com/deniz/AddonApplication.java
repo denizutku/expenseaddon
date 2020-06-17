@@ -13,10 +13,10 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EntityScan(basePackages = {"com.deniz.models"})
 public class AddonApplication {
 
+
     public static void main(String[] args) throws Exception {
         new SpringApplication(AddonApplication.class).run(args);
     }
-
 
     @Configuration
     public class ResourceConfig implements WebMvcConfigurer {
@@ -26,4 +26,5 @@ public class AddonApplication {
             registry.addResourceHandler("/uploads/**").addResourceLocations("file:uploads/");
         }
     }
+
 }

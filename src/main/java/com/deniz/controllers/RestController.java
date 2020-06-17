@@ -24,7 +24,7 @@ public class RestController {
     @PostMapping(value = "/api/expense/save")
     public Response postCustomer(@RequestParam("description") String description, @RequestParam("amount") String amount,
                                  @RequestParam("file") MultipartFile multipartFile, @RequestParam("filename") String filename
-            , @AuthenticationPrincipal AtlassianHostUser hostUser) {
+            , @AuthenticationPrincipal AtlassianHostUser hostUser) throws Exception {
         fileService.uploadFile(multipartFile);
         Expense expense = new Expense();
         expense.setAmount(amount);
