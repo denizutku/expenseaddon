@@ -1,3 +1,41 @@
+let url;
+
+$( document ).ready(function() {
+
+// SUBMIT FORM
+    $("#expenseForm").submit(function(event) {
+        // Prevent the form from submitting via the browser.
+        event.preventDefault();
+        ajaxPost();
+    });
+
+    function ajaxPost(){
+
+        var fd = new FormData();
+        var files = $('#file')[0].files[0];
+        fd.append('image',files)
+
+        $.ajax({
+            url: 'https://api.imgur.com/3/image',
+            headers: {
+                'Authorization': 'Client-ID 43b4dfd081c3806'
+            },
+            type: 'POST',
+            data: fd,
+            async: false,
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                url = response.data.link;
+            }
+        });
+
+    }
+
+})
+
+
+
 $( document ).ready(function() {
 
     // SUBMIT FORM
@@ -14,8 +52,7 @@ $( document ).ready(function() {
         formData.append('description', $("#description").val());
         formData.append('amount', $("#amount").val());
         // Attach file
-        formData.append('file', $('input[type=file]')[0].files[0]);
-        formData.append('filename', $('input[type=file]')[0].files[0].name);
+        formData.append('file', url);
 
         // DO POST
         $.ajax({

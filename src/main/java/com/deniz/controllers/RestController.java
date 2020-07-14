@@ -4,7 +4,6 @@ import com.atlassian.connect.spring.AtlassianHostUser;
 import com.deniz.models.Expense;
 import com.deniz.models.ExpenseRepository;
 import com.deniz.models.Response;
-import com.deniz.services.FileService;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
@@ -14,22 +13,19 @@ import org.springframework.web.servlet.ModelAndView;
 public class RestController {
 
     private final ExpenseRepository expenseRepository;
-    private final FileService fileService;
 
-    public RestController(ExpenseRepository expenseRepository, FileService fileService) {
+    public RestController(ExpenseRepository expenseRepository) {
         this.expenseRepository = expenseRepository;
-        this.fileService = fileService;
     }
 
     @PostMapping(value = "/api/expense/save")
     public Response postCustomer(@RequestParam("description") String description, @RequestParam("amount") String amount,
-                                 @RequestParam("file") MultipartFile multipartFile, @RequestParam("filename") String filename
-            , @AuthenticationPrincipal AtlassianHostUser hostUser) throws Exception {
-        fileService.uploadFile(multipartFile);
+                                 @RequestParam("file") String imgurl,
+                                 @AuthenticationPrincipal AtlassianHostUser hostUser) throws Exception {
         Expense expense = new Expense();
         expense.setAmount(amount);
         expense.setDescription(description);
-        expense.setFilename(filename);
+        expense.setUrl(imgurl);
         expenseRepository.save(expense);
         Response response = new Response("Done", expense);
         return response;

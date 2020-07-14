@@ -11,7 +11,7 @@ public class Expense {
     private long id;
     private String description;
     private String amount;
-    private String filename;
+    private String url;
 
     public long getId() {
         return id;
@@ -37,21 +37,21 @@ public class Expense {
         this.amount = amount;
     }
 
-    public String getFilename() {
-        return filename;
+    public String getUrl() {
+        return url;
     }
 
-    public void setFilename(String filename) {
-        this.filename = filename;
+    public void setUrl(String url) {
+        this.url = url;
     }
 
     public Expense() {
     }
 
-    public Expense(long id, String description, String amount,String filename) {
+    public Expense(long id, String description, String amount,String url) {
         this.id = id;
         this.description = description;
         this.amount = amount;
-        this.filename = filename;
+        this.url = url;
     }
 }
