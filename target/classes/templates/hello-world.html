@@ -9,10 +9,9 @@
 </head>
 <body>
 <section id="content" class="ac-content">
-    <h1>Hello World </h1>
 
     <form th:action="@{/search}" method="GET" style="margin-top: 5rem;">
-        <h2>Search for a issue:</h2>
+        <h2>Search for an issue:</h2>
         <input class="form-control" placeholder="Search for..." type="text" th:name="search">
         <input type="hidden" th:name="jwt" id="jwt" th:value="${atlassianConnectToken}">
         <button id="search" type="submit" style="margin-top: 1rem;"> Search </button>

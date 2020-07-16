@@ -16,20 +16,23 @@
             <input type="hidden" th:name="jwt" id="jwt" th:value="${atlassianConnectToken}">
 
 
+            <img th:src="@{${expense.url}}"/>
+
+
             <tr>
-                <td>Product ID:</td>
+                <td>Expense ID:</td>
                 <td>
                     <input type="text" th:field="*{id}" readonly="readonly" />
                 </td>
             </tr>
             <tr>
-                <td>Product Name:</td>
+                <td>Expense Description:</td>
                 <td>
                     <input type="text" th:field="*{description}" />
                 </td>
             </tr>
             <tr>
-                <td>Brand:</td>
+                <td>Expense Amount:</td>
                 <td><input type="text" th:field="*{amount}" /></td>
             </tr>
             <tr>
@@ -39,7 +42,6 @@
     </form>
 </div>
 
-<img th:src="@{'/uploads/' + ${expense.filename}}"/>
 <script>
     function refreshPage(){
         alert("saved");
