@@ -9,6 +9,6 @@ spring.jpa.hibernate.ddl-auto: create
 
 addon:
   key: atlassianaddon
-  base-url: https://ea2b788d4a53.ngrok.io
+  base-url: https://4cc1d6a8aef7.ngrok.io
 
 logging.level.com.atlassian.connect.spring: DEBUG
