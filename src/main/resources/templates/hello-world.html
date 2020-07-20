@@ -10,16 +10,39 @@
 <body>
 <section id="content" class="ac-content">
 
-    <form th:action="@{/search}" method="GET" style="margin-top: 5rem;">
-        <h2>Search for an issue:</h2>
-        <input class="form-control" placeholder="Search for..." type="text" th:name="search">
-        <input type="hidden" th:name="jwt" id="jwt" th:value="${atlassianConnectToken}">
-        <button id="search" type="submit" style="margin-top: 1rem;"> Search </button>
-    </form>
+<!--    <form th:action="@{/search}" method="GET" style="margin-top: 5rem;" id="searchForm">-->
+<!--        <h2>Search for an issue:</h2>-->
+<!--        <input class="form-control" placeholder="Search for..." type="text" th:name="search" id="searchText">-->
+<!--        <input type="hidden" th:name="jwt" id="jwt" th:value="${atlassianConnectToken}">-->
+<!--        <button id="search" type="submit" style="margin-top: 1rem;"> Search </button>-->
+<!--    </form>-->
 
-    <div th:if="${contains != null}" th:each="datax :${contains}">
-        <p th:text="${datax}"/>
+<!--    <div th:if="${contains != null}" th:each="datax :${contains}">-->
+<!--        <p th:text="${datax}"/>-->
+<!--    </div>-->
+
+    <h4> Search an issue by name:
+        <div class="btn-group btn-sm" role="group">
+            <input id="issueSearch" class="btn btn-default loggingSearch" type="text" placeholder="Search" />
+        </div>
+        </div>
+    </h4>
+
+    <div class="dataTable_wrapper">
+        <div class="table-responsive">
+            <table class="table table table-striped table-bordered table-hover" id="dataTables-example">
+                <thead>
+                <tr>
+                    <th>Issues</th>
+                </tr>
+                </thead>
+                <tbody>
+
+                </tbody>
+            </table>
+        </div>
     </div>
+
 
     <div class="container">
 
@@ -96,6 +119,49 @@
             }
         });
     });
+
+    var issues = [];
+
+    AP.request({
+        url: '/rest/api/2/search?',
+        type: 'GET',
+        success: function(responseText){
+            var obj = JSON.parse(responseText);
+            var i;
+            for(i = 0;i<obj.issues.length;i++){
+                issues.push(obj.issues[i].fields.summary);
+            }
+            console.log(issues);
+        },
+        error: function(result) {
+            console.log("error!");
+        }
+    });
+
+    $(document).ready(function ()
+    {
+        $("#issueSearch").on("keyup", function()
+        {
+            issueSearchByName($("#issueSearch").val());
+        });
+    });
+
+    function issueSearchByName(filterVal)
+    {
+        filterVal= filterVal.toLowerCase();
+        var trustArray=issues.map(function(issue){
+            if(!filterVal ||  issue.toLowerCase().indexOf(filterVal)!==-1){
+                return "<tr><td class='issuesByName'>" + issue +"</td></tr>"
+            }
+        });
+        $('#dataTables-example').find('tbody').html(trustArray);
+    }
+
+    // AP.context.getContext(function(response){
+    //     console.log("Jira Issue Key", response.issue_key);
+    //     console.log("Confluence page id", response.pageId);
+    //     console.log("license status", response.license);
+    // });
 </script>
 
 </body>

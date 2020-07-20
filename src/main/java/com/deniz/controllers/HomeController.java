@@ -38,34 +38,7 @@ public class HomeController {
         return modelAndView;
     }
 
-    @GetMapping("/search")
-    public ModelAndView search(@RequestParam(value = "search") String searchText, @RequestParam(value = "jwt") String jwt, @AuthenticationPrincipal AtlassianHostUser hostUser) throws UnirestException {
-        ModelAndView modelAndView = new ModelAndView();
-        atlassianHostRestClients
-                .authenticatedAs(hostUser)
-                .getForObject("https://denizutku.atlassian.net/rest/api/2/search", Void.class);
 
-        List<String> datas;
-        HttpResponse<JsonNode> response = Unirest.get("https://denizutku.atlassian.net/rest/api/2/search")
-                .basicAuth("beydogandeniz@gmail.com","6EGg3hu0WWQgjbG7MG2u7C51")
-                .header("Accept", "application/json")
-                .queryString("jql", "project = TEST")
-//                .queryString("fields","summary")
-                .queryString("expand","names")
-                .asJson();
-        modelAndView.addObject("body",response.getBody());
-        datas = jsonService.extract(response.getBody().toString(),"summary");
-        List<String> contains = new ArrayList<>();
-
-        for(int i =0; i < datas.size();i++){
-            if(datas.get(i).contains(searchText)){
-            contains.add(datas.get(i));
-            }
-        }
-        modelAndView.addObject("contains",contains);
-        modelAndView.setViewName("hello-world");
-        return modelAndView;
-    }
 
     @PostMapping(value = "/save")
     public String saveProduct(@ModelAttribute("expense") Expense expense) {
