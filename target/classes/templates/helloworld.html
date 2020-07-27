@@ -12,78 +12,65 @@
 </head>
 <body>
 
+    <div class="issue_search">
 
-<div class="issue_search" style="margin:0px 50px 0px 50px">
+        <h1>Search an issue by name:</h1>
+        <div class="ak-field-group">
+            <label htmlFor="issueSearch">Issue name</label>
+            <input type="text" class="ak-field-text" id="issueSearch" name="issueSearch" placeholder="Search"/>
+        </div>
 
-    <h4>Search an issue by name:</h4>
-    <div class="ak-field-group">
-        <label htmlFor="issueSearch">Issue name</label>
-        <input type="search" class="ak-field-text" id="issueSearch" name="issueSearch" placeholder="Search"/>
+        <div class="dataTable_wrapper">
+            <div class="table-responsive">
+                <table class="table table table-striped table-bordered table-hover" id="dataTables-example">
+                    <thead>
+                    <tr>
+                        <th>Issues</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
     </div>
 
-    <div class="dataTable_wrapper" style="margin:10px">
-        <div class="table-responsive">
-            <table class="table table table-striped table-bordered table-hover" id="dataTables-example">
-                <thead>
-                <tr>
-                    <th>Issues</th>
-                </tr>
-                </thead>
-                <tbody>
+    <div class="expense_form">
 
-                </tbody>
-            </table>
-        </div>
-    </div>
-
-</div>
-
-<div class="expense_form" style="margin:35px 50px 0px 50px">
-
-    <form id="expenseForm">
-        <h5>Add new expense</h5>
-        <div class="ak-field-group">
-            <label htmlFor="description">Description</label>
-            <input type="text" class="ak-field-text" id="description" name="description" placeholder="Description"/>
-        </div>
-        <div class="ak-field-group">
-            <label htmlFor="amount">Amount</label>
-            <input type="text" class="ak-field-text" id="amount" name="amount" placeholder="Amount"/>
-        </div>
-        <div class="ak-field-group">
-            <label htmlFor="file">File</label>
-            <input type="file" class="ak-field-file" id="file" name="file" placeholder="File"/>
-        </div>
-        <div class="ak-field-group">
+        <form id="expenseForm">
+            <h1>Add new expense</h1>
+            <div class="ak-field-group">
+                <label htmlFor="description">Description</label>
+                <input type="text" class="ak-field-text" id="description" name="description" placeholder="Description"/>
+            </div>
+            <div class="ak-field-group">
+                <label htmlFor="amount">Amount</label>
+                <input type="text" class="ak-field-text" id="amount" name="amount" placeholder="Amount"/>
+            </div>
+            <div class="ak-field-group">
+                <label htmlFor="file">Amount</label>
+                <input type="file" class="ak-field-file" id="file" name="file" placeholder="File"/>
+            </div>
             <input type="hidden" id="token" th:value="${atlassianConnectToken}">
             <button class="ak-button ak-button__appearance-primary">Submit</button>
+        </form>
+
+        <div class="col-sm-7" id="postResultDiv">
         </div>
 
-    </form>
-
-    <div class="col-sm-7" id="postResultDiv" style="margin:35px 0px 0px 0px">
-    </div>
-
-    <div class="col-sm-7" style="margin:35px 0px 20px 0px">
-        <button id="getExpenses" class="ak-button ak-button__appearance-primary">Get All Expenses</button>
-
-        <div id="getResultDiv" style="padding:20px 10px 0px 50px">
-            <table class="list-group">
-                <tr>
-                    <th>ID</th>
-                    <th>DESCRIPTION</th>
-                    <th>AMOUNT</th>
-                    <th>FILE</th>
-                    <th>DELETE</th>
-                    <th>EDIT</th>
-                </tr>
-            </table>
+        <div class="col-sm-7" style="margin:20px 0px 20px 0px">
+            <button id="getExpenses" type="button" class="btn btn-primary">Get All Expenses</button>
+            <div id="getResultDiv" style="padding:20px 10px 20px 50px">
+                <ul class="list-group">
+                </ul>
+            </div>
         </div>
+
     </div>
 
-</div>
-
-<div class="result" style="margin:35px 50px 0px 50px"></div>
+    <div class="result"></div>
 </body>
 
 <script>
@@ -103,7 +90,8 @@
             }
         });
     });
-
+</script>
+<script>
     $('body').on('click','.edit-expense', function(e) {
         var val = $(this).val();
         e.preventDefault();
@@ -157,6 +145,11 @@
         $('#dataTables-example').find('tbody').html(trustArray);
     }
 
+    // AP.context.getContext(function(response){
+    //     console.log("Jira Issue Key", response.issue_key);
+    //     console.log("Confluence page id", response.pageId);
+    //     console.log("license status", response.license);
+    // });
 </script>
 
 </html>

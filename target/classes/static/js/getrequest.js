@@ -1,12 +1,10 @@
 $( document ).ready(function() {
 
-    // GET REQUEST
     $("#getExpenses").click(function(event){
         event.preventDefault();
         ajaxGet();
     });
 
-    // DO GET
     function ajaxGet(){
         $.ajax({
             type : "GET",
@@ -16,7 +14,7 @@ $( document ).ready(function() {
                 if(result.status == "Done"){
                     $('#getResultDiv ul').empty();
                     $.each(result.data, function(i, expense){
-                        var expense = '<tr> <td> ' + expense.id + ')   ' + '</td> <td>'   + expense.description + '</td> <td>' + expense.amount + ' </td><td> <img src="' +expense.url +'" style="width:50px;height:50px;" alt="Image not found"></td> <td><button class="delete-expense" value="' +expense.id+'">Delete</button></td> <td><form><button class="edit-expense" value="' +expense.id+'">Edit</button>  </td> </tr>';
+                        var expense = ' <tr> <td> ' + expense.id + ')   ' + '</td> <td>'   + expense.description + '</td> <td>' + expense.amount + ' </td><td> <img src="' +expense.url +'" style="width:50px;height:50px;" alt="Image not found"></td> <td><button class="delete-expense" value="' +expense.id+'">Delete</button></td> <td><form><button class="edit-expense" value="' +expense.id+'">Edit</button>  </td> </tr>';
                         $('#getResultDiv .list-group').append(expense)
                     });
                     console.log("Success: ", result);

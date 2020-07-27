@@ -1,7 +1,7 @@
 {
   "key": "${addon.key}",
   "baseUrl": "${addon.base-url}",
-  "name": "Atlassianaddon",
+  "name": "Expense Addon",
   "authentication": {
     "type": "jwt"
   },
@@ -17,7 +17,7 @@
         "key": "hello-world",
         "location": "system.top.navigation.bar",
         "name": {
-          "value": "Test Addon"
+          "value": "Expense Addon"
         }
       }
     ]
